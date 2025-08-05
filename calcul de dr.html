@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculateur de Damage Reduction Paladins</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 10px;
+    background: #121212;
+    color: #eee;
+  }
+  h1 {
+    text-align: center;
+    color: #3ba55d;
+  }
+  label {
+    display: block;
+    margin-top: 15px;
+  }
+  input[type="number"] {
+    width: 70px;
+    padding: 6px;
+    margin-left: 10px;
+    border-radius: 4px;
+    border: none;
+    font-size: 1em;
+  }
+  #result {
+    margin-top: 25px;
+    font-size: 1.4em;
+    font-weight: bold;
+    text-align: center;
+    color: #3ba55d;
+  }
+  small {
+    font-size: 0.8em;
+    color: #aaa;
+  }
+</style>
+</head>
+<body>
+  <h1>Calculateur DR Paladins</h1>
+  <form id="drForm">
+    <label>DR 1 (%) : <input type="number" min="0" max="100" step="0.1" value="0" class="drInput" /></label>
+    <label>DR 2 (%) : <input type="number" min="0" max="100" step="0.1" value="0" class="drInput" /></label>
+    <label>DR 3 (%) : <input type="number" min="0" max="100" step="0.1" value="0" class="drInput" /></label>
+    <label>DR 4 (%) : <input type="number" min="0" max="100" step="0.1" value="0" class="drInput" /></label>
+    <label>DR 5 (%) : <input type="number" min="0" max="100" step="0.1" value="0" class="drInput" /></label>
+    <label>DR 6 (%) : <input type="number" min="0" max="100" step="0.1" value="0" class="drInput" /></label>
+  </form>
+
+  <div id="result">Réduction totale : 0%</div>
+
+  <script>
+    const inputs = document.querySelectorAll('.drInput');
+    const result = document.getElementById('result');
+
+    function calculateDR() {
+      let product = 1;
+      inputs.forEach(input => {
+        let val = parseFloat(input.value);
+        if (!isNaN(val) && val > 0) {
+          product *= (1 - val / 100);
+        }
+      });
+      let totalDR = 1 - product;
+      if (totalDR < 0) totalDR = 0;
+      result.textContent = `Réduction totale : ${(totalDR * 100).toFixed(2)}%`;
+    }
+
+    inputs.forEach(input => {
+      input.addEventListener('input', calculateDR);
+    });
+
+    calculateDR();
+  </script>
+</body>
+</html>
