@@ -1,133 +1,74 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Calculateur Damage Reduction - Blindé</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculateur DR Paladins</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
-
     body {
-      margin: 0; padding: 20px;
-      background: linear-gradient(135deg, #1c1c1c, #2f2f2f);
-      color: #cbd5e1;
-      font-family: 'Orbitron', monospace, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #1e1e2f, #2e2e48);
+      color: #fff;
+      padding: 20px;
+      margin: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: flex-start;
       min-height: 100vh;
-      user-select: none;
     }
-
     h2 {
-      font-size: 3rem;
-      margin-bottom: 0.2em;
-      color: #1976d2;
-      text-shadow:
-        0 0 5px #42a5f5,
-        0 0 15px #1565c0,
-        0 0 25px #0d47a1;
+      color: #f9a825;
     }
-
-    p {
-      color: #bbdefb;
-      margin-bottom: 1.5rem;
-      font-weight: 600;
-      text-shadow: 0 0 4px #1565c0;
-    }
-
-    input[type=number] {
-      background: linear-gradient(145deg, #263238, #1c1c1c);
-      border: 2px solid #1976d2;
-      border-radius: 10px;
-      color: #bbdefb;
-      font-size: 20px;
-      padding: 14px 18px;
-      margin: 10px 8px;
+    input {
+      padding: 10px;
+      margin: 8px;
       width: 80%;
-      max-width: 320px;
-      box-shadow:
-        inset 0 0 8px #42a5f5,
-        0 0 8px #1976d2;
-      transition: border-color 0.3s, box-shadow 0.3s;
-    }
-
-    input[type=number]:focus {
-      border-color: #64b5f6;
-      box-shadow:
-        inset 0 0 12px #64b5f6,
-        0 0 15px #90caf9;
-      outline: none;
-      color: #e3f2fd;
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 16px 48px;
-      font-size: 22px;
-      font-weight: 700;
+      max-width: 300px;
+      font-size: 16px;
       border: none;
-      border-radius: 15px;
-      background: linear-gradient(135deg, #1976d2, #0d47a1);
-      color: #bbdefb;
+      border-radius: 8px;
+      background: #fff;
+      color: #000;
+    }
+    button {
+      margin-top: 15px;
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background-color: #00c853;
+      color: #fff;
       cursor: pointer;
-      box-shadow:
-        0 0 12px #42a5f5,
-        0 0 15px #90caf9 inset;
-      user-select: none;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      transition: background 0.4s, box-shadow 0.4s;
+      transition: background-color 0.3s;
     }
-
     button:hover {
-      background: linear-gradient(135deg, #42a5f5, #2196f3);
-      box-shadow:
-        0 0 20px #bbdefb,
-        0 0 22px #90caf9 inset;
+      background-color: #00e676;
     }
-
     #result {
-      margin-top: 40px;
-      font-size: 32px;
-      font-weight: 900;
-      color: #bbdefb;
-      background: #0d47a1;
-      padding: 22px 48px;
-      border-radius: 30px;
-      width: fit-content;
-      min-width: 280px;
-      text-align: center;
-      box-shadow:
-        0 0 30px #42a5f5,
-        0 0 40px #0d47a1 inset;
-      user-select: none;
-      letter-spacing: 1.3px;
+      margin-top: 20px;
+      font-size: 24px;
+      color: #4dd0e1;
+      text-shadow: 1px 1px 2px #000;
     }
-
     @media (max-width: 600px) {
-      input[type=number] {
+      input {
         width: 100%;
-        max-width: 100%;
-      }
-      button {
-        width: 90%;
       }
     }
   </style>
 </head>
 <body>
+  <h2>🛡️ Calculateur DR - Paladins</h2>
+  <p>Entrez jusqu'à 5 sources de Damage Reduction (en %):</p>
 
-  <h2>🛡️ Calculateur Damage Reduction</h2>
-  <p>Entrez jusqu'à 5 sources de réduction de dégâts (en %) :</p>
+  <input type="number" id="dr1" placeholder="DR 1 (%)">
+  <input type="number" id="dr2" placeholder="DR 2 (%)">
+  <input type="number" id="dr3" placeholder="DR 3 (%)">
+  <input type="number" id="dr4" placeholder="DR 4 (%)">
+  <input type="number" id="dr5" placeholder="DR 5 (%)">
 
-  <input type="number" id="dr1" placeholder="DR 1 (%)" min="0" max="100" step="0.01" />
-  <input type="number" id="dr2" placeholder="DR 2 (%)" min="0" max="100" step="0.01" />
-  <input type="number" id="dr3" placeholder="DR 3 (%)" min="0" max="100" step="0.01" />
-  <input type="number" id="dr4" placeholder="DR 4 (%)" min="0" max="100" step="0.01" />
-  <input type="number" id="dr5" placeholder="DR 5 (%)" min="0" max="100" step="0.01" />
-
-  <button onclick="calculateDR()">Calculer Damage Reduction</button>
+  <button onclick="calculateDR()">Calculer</button>
 
   <h3 id="result">...</h3>
 
@@ -141,31 +82,34 @@
         parseFloat(document.getElementById('dr5').value) || 0,
       ];
 
-      drInputs.sort((a,b) => b - a);
+      // Trier du plus grand au plus petit
+      drInputs.sort((a, b) => b - a);
 
-      let cumulative = 0;
+      let totalDR = 0;
+      let remainingFlat = 0.30;
 
       for (let i = 0; i < drInputs.length; i++) {
-        const val = drInputs[i] / 100;
+        let dr = drInputs[i] / 100;
 
-        if (cumulative < 0.30) {
-          const spaceLeft = 0.30 - cumulative;
-          if (val <= spaceLeft) {
-            cumulative += val;
+        if (remainingFlat > 0) {
+          if (dr <= remainingFlat) {
+            totalDR += dr;
+            remainingFlat -= dr;
           } else {
-            cumulative += spaceLeft;
-            const leftover = val - spaceLeft;
-            cumulative += leftover * (1 - cumulative);
+            const flatUsed = remainingFlat;
+            totalDR += flatUsed;
+            dr -= flatUsed;
+            remainingFlat = 0;
+            totalDR += dr * (1 - totalDR);
           }
         } else {
-          cumulative += val * (1 - cumulative);
+          totalDR += dr * (1 - totalDR);
         }
       }
 
-      const finalDR = Math.round(cumulative * 10000) / 100;
+      const finalDR = Math.round(totalDR * 100000) / 1000;
       document.getElementById("result").innerText = `🛡️ Damage Reduction réelle : ${finalDR}%`;
     }
   </script>
-
 </body>
 </html>
