@@ -3,80 +3,111 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Calculateur DR Paladins</title>
+  <title>Calculateur Damage Reduction - Blindé</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #4a148c, #880e4f);
-      color: #fff;
-      padding: 20px;
-      margin: 0;
-      min-height: 100vh;
+      margin: 0; padding: 20px;
+      background: linear-gradient(135deg, #1c1c1c, #2f2f2f);
+      color: #cbd5e1;
+      font-family: 'Orbitron', monospace, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-    h2 {
-      color: #ffeb3b;
-      text-shadow: 1px 1px 3px #000;
-      margin-bottom: 0.3em;
-    }
-    p {
-      font-weight: bold;
-      color: #b39ddb;
-      text-shadow: 1px 1px 1px #311b92;
-    }
-    input[type=number] {
-      background: #fff;
-      border: 2px solid #ce93d8;
-      border-radius: 10px;
-      color: #000;
-      font-size: 18px;
-      padding: 12px 10px;
-      margin: 10px 5px;
-      width: 90%;
-      max-width: 320px;
-      box-shadow: 0 0 10px #ce93d8;
-      transition: border-color 0.3s, box-shadow 0.3s;
-    }
-    input[type=number]:focus {
-      border-color: #fdd835;
-      box-shadow: 0 0 15px #fdd835;
-      outline: none;
-    }
-    button {
-      margin-top: 20px;
-      padding: 15px 40px;
-      font-size: 20px;
-      border: none;
-      border-radius: 15px;
-      background: linear-gradient(45deg, #ff4081, #f50057);
-      color: white;
-      cursor: pointer;
-      box-shadow: 0 0 15px #f50057;
-      transition: background 0.3s, box-shadow 0.3s;
-      font-weight: 700;
+      min-height: 100vh;
       user-select: none;
     }
-    button:hover {
-      background: linear-gradient(45deg, #f50057, #ff4081);
-      box-shadow: 0 0 25px #ff80ab;
+
+    h2 {
+      font-size: 3rem;
+      margin-bottom: 0.2em;
+      color: #1976d2;
+      text-shadow:
+        0 0 5px #42a5f5,
+        0 0 15px #1565c0,
+        0 0 25px #0d47a1;
     }
-    #result {
-      margin-top: 30px;
-      font-size: 28px;
+
+    p {
+      color: #bbdefb;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      text-shadow: 0 0 4px #1565c0;
+    }
+
+    input[type=number] {
+      background: linear-gradient(145deg, #263238, #1c1c1c);
+      border: 2px solid #1976d2;
+      border-radius: 10px;
+      color: #bbdefb;
+      font-size: 20px;
+      padding: 14px 18px;
+      margin: 10px 8px;
+      width: 80%;
+      max-width: 320px;
+      box-shadow:
+        inset 0 0 8px #42a5f5,
+        0 0 8px #1976d2;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input[type=number]:focus {
+      border-color: #64b5f6;
+      box-shadow:
+        inset 0 0 12px #64b5f6,
+        0 0 15px #90caf9;
+      outline: none;
+      color: #e3f2fd;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 16px 48px;
+      font-size: 22px;
       font-weight: 700;
-      color: #000;
-      background: linear-gradient(45deg, #00e676, #1de9b6);
-      padding: 15px 30px;
-      border-radius: 20px;
-      width: fit-content;
-      min-width: 260px;
-      text-align: center;
-      box-shadow: 0 0 20px #1de9b6;
+      border: none;
+      border-radius: 15px;
+      background: linear-gradient(135deg, #1976d2, #0d47a1);
+      color: #bbdefb;
+      cursor: pointer;
+      box-shadow:
+        0 0 12px #42a5f5,
+        0 0 15px #90caf9 inset;
+      user-select: none;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transition: background 0.4s, box-shadow 0.4s;
     }
+
+    button:hover {
+      background: linear-gradient(135deg, #42a5f5, #2196f3);
+      box-shadow:
+        0 0 20px #bbdefb,
+        0 0 22px #90caf9 inset;
+    }
+
+    #result {
+      margin-top: 40px;
+      font-size: 32px;
+      font-weight: 900;
+      color: #bbdefb;
+      background: #0d47a1;
+      padding: 22px 48px;
+      border-radius: 30px;
+      width: fit-content;
+      min-width: 280px;
+      text-align: center;
+      box-shadow:
+        0 0 30px #42a5f5,
+        0 0 40px #0d47a1 inset;
+      user-select: none;
+      letter-spacing: 1.3px;
+    }
+
     @media (max-width: 600px) {
       input[type=number] {
+        width: 100%;
         max-width: 100%;
       }
       button {
@@ -86,8 +117,9 @@
   </style>
 </head>
 <body>
-  <h2>🎯 Calculateur DR - Paladins</h2>
-  <p>Entrez jusqu'à 5 sources de Damage Reduction (en %):</p>
+
+  <h2>🛡️ Calculateur Damage Reduction</h2>
+  <p>Entrez jusqu'à 5 sources de réduction de dégâts (en %) :</p>
 
   <input type="number" id="dr1" placeholder="DR 1 (%)" min="0" max="100" step="0.01" />
   <input type="number" id="dr2" placeholder="DR 2 (%)" min="0" max="100" step="0.01" />
@@ -95,7 +127,7 @@
   <input type="number" id="dr4" placeholder="DR 4 (%)" min="0" max="100" step="0.01" />
   <input type="number" id="dr5" placeholder="DR 5 (%)" min="0" max="100" step="0.01" />
 
-  <button onclick="calculateDR()">Calculer</button>
+  <button onclick="calculateDR()">Calculer Damage Reduction</button>
 
   <h3 id="result">...</h3>
 
@@ -107,23 +139,26 @@
         parseFloat(document.getElementById('dr3').value) || 0,
         parseFloat(document.getElementById('dr4').value) || 0,
         parseFloat(document.getElementById('dr5').value) || 0,
-      ].filter(d => d > 0).sort((a, b) => b - a);
+      ];
+
+      drInputs.sort((a,b) => b - a);
 
       let cumulative = 0;
 
       for (let i = 0; i < drInputs.length; i++) {
-        const drDecimal = drInputs[i] / 100;
+        const val = drInputs[i] / 100;
+
         if (cumulative < 0.30) {
           const spaceLeft = 0.30 - cumulative;
-          const add = Math.min(drDecimal, spaceLeft);
-          cumulative += add;
-          if (drDecimal > spaceLeft) {
-            const diminished = (drDecimal - spaceLeft) * (1 - cumulative);
-            cumulative += diminished;
+          if (val <= spaceLeft) {
+            cumulative += val;
+          } else {
+            cumulative += spaceLeft;
+            const leftover = val - spaceLeft;
+            cumulative += leftover * (1 - cumulative);
           }
         } else {
-          const diminished = drDecimal * (1 - cumulative);
-          cumulative += diminished;
+          cumulative += val * (1 - cumulative);
         }
       }
 
@@ -131,5 +166,6 @@
       document.getElementById("result").innerText = `🛡️ Damage Reduction réelle : ${finalDR}%`;
     }
   </script>
+
 </body>
 </html>
