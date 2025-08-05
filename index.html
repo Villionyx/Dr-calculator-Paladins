@@ -1,108 +1,42 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculateur DR Paladins</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculateur DR Paladins Coloré</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom right, #1e1e2f, #2e2e48);
+      background: linear-gradient(135deg, #4a148c, #880e4f);
       color: #fff;
       padding: 20px;
       margin: 0;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
     }
     h2 {
-      color: #f9a825;
+      color: #ffeb3b;
+      text-shadow: 1px 1px 3px #000;
+      margin-bottom: 0.3em;
     }
-    input {
-      padding: 10px;
-      margin: 8px;
-      width: 80%;
-      max-width: 300px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      background: #fff;
-      color: #000;
+    p {
+      font-weight: bold;
+      color: #b39ddb;
+      text-shadow: 1px 1px 1px #311b92;
     }
-    button {
-      margin-top: 15px;
-      padding: 12px 24px;
-      font-size: 18px;
-      border: none;
-      border-radius: 8px;
-      background-color: #00c853;
+    input[type=number] {
+      background: linear-gradient(45deg, #7b1fa2, #ab47bc);
+      border: 2px solid #ce93d8;
+      border-radius: 10px;
       color: #fff;
-      cursor: pointer;
-      transition: background-color 0.3s;
+      font-size: 18px;
+      padding: 12px 10px;
+      margin: 10px 5px;
+      width: 90%;
+      max-width: 320px;
+      box-shadow: 0 0 10px #ce93d8;
+      transition: border-color 0.3s, box-shadow 0.3s;
     }
-    button:hover {
-      background-color: #00e676;
-    }
-    #result {
-      margin-top: 20px;
-      font-size: 24px;
-      color: #4dd0e1;
-      text-shadow: 1px 1px 2px #000;
-    }
-    @media (max-width: 600px) {
-      input {
-        width: 100%;
-      }
-    }
-  </style>
-</head>
-<body>
-  <h2>🎯 Calculateur DR - Paladins</h2>
-  <p>Entrez jusqu'à 5 sources de Damage Reduction (en %):</p>
-
-  <input type="number" id="dr1" placeholder="DR 1 (%)">
-  <input type="number" id="dr2" placeholder="DR 2 (%)">
-  <input type="number" id="dr3" placeholder="DR 3 (%)">
-  <input type="number" id="dr4" placeholder="DR 4 (%)">
-  <input type="number" id="dr5" placeholder="DR 5 (%)">
-
-  <button onclick="calculateDR()">Calculer</button>
-
-  <h3 id="result">...</h3>
-
-  <script>
-    function calculateDR() {
-      const drInputs = [
-        parseFloat(document.getElementById('dr1').value) || 0,
-        parseFloat(document.getElementById('dr2').value) || 0,
-        parseFloat(document.getElementById('dr3').value) || 0,
-        parseFloat(document.getElementById('dr4').value) || 0,
-        parseFloat(document.getElementById('dr5').value) || 0,
-      ];
-
-      // Trier du plus grand au plus petit
-      drInputs.sort((a, b) => b - a);
-
-      let cumulative = 0;
-
-      for (let i = 0; i < drInputs.length; i++) {
-        const drDecimal = drInputs[i] / 100;
-
-        if (cumulative < 0.30) {
-          const spaceLeft = 0.30 - cumulative;
-          const add = Math.min(drDecimal, spaceLeft);
-          cumulative += add;
-        } else {
-          const diminished = drDecimal * (1 - cumulative);
-          cumulative += diminished;
-        }
-      }
-
-      const finalDR = Math.round(cumulative * 10000) / 100;
-      document.getElementById("result").innerText = `🛡️ Damage Reduction réelle : ${finalDR}%`;
-    }
-  </script>
-</body>
-</html>
+    input[type=number]:focus {
